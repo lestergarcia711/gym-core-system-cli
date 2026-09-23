@@ -1,0 +1,35 @@
+{
+  "name": "gym-core-system-cli",
+  "version": "1.0.0",
+  "description": "system cli to gym managment",
+  "keywords": [
+    "cli",
+    "mysql",
+    "solid",
+    "transactions",
+    "factory-pattern",
+    "command-pattern"
+  ],
+  "homepage": "https://github.com/lestergarcia711/gym-core-system-cli#readme",
+  "bugs": {
+    "url": "https://github.com/lestergarcia711/gym-core-system-cli/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lestergarcia711/gym-core-system-cli.git"
+  },
+  "license": "ISC",
+  "author": "lestergarcia711",
+  "type": "module",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "node --watch src/app.js"
+  },
+  "dependencies": {
+    "chalk": "^6.0.0",
+    "dotenv": "^18.0.3",
+    "inquirer": "^14.2.2",
+    "mysql2": "^3.24.4"
+  }
+}
