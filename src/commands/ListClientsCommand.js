@@ -1,7 +1,7 @@
 import chalk from "chalk";
-import {ClientService} from '../services/CleintService.js';
+import {ClientService} from '../services/ClientService.js';
 
-export class ListClientCommand{
+export class ListClientsCommand{
     async execute(){
         console.log(chalk.blue.bold('\n --- Listar Clientes Activos---'));
         try{
@@ -16,7 +16,7 @@ export class ListClientCommand{
                 DPI:c.dpi,
                 Nombre: `${c.first_name} ${c.last_name}`,
                 Email: c.email,
-                Telefono: c.phone
+                Telefono: c.phone_number
 
             })));
         }catch(error){

@@ -19,10 +19,10 @@ export class UpdateClientCommand{
 
         const answers= await inquirer.prompt([
             {type: 'input', name: 'dpi', message: 'DPI:', default: current.dpi},
-            {type: 'input', name: 'firsName', message: 'Nombre:', default: current.first_name},
+            {type: 'input', name: 'firstName', message: 'Nombre:', default: current.first_name},
             {type: 'input', name: 'lastName', message: 'Apellido:', default: current.last_name},
             {type: 'input', name: 'email', message: 'Correo Electronico:', default: current.email},
-            {type: 'input', name: 'phone', message: 'Telefono:', default: current.phone}
+            {type: 'input', name: 'phone', message: 'Telefono:', default: current.phone_number}
         ]);
 
         try {
@@ -31,7 +31,7 @@ export class UpdateClientCommand{
             console.log(chalk.green.bold('Cliente actualizado correctamente'));
 
         }catch(error){
-            console.log(chalk.red('Error al actulaizar: ${error.message'));
+            console.log(chalk.red(`Error al actulaizar: ${error.message}`));
         }
        }
 }

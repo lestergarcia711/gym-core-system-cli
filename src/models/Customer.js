@@ -3,7 +3,7 @@ export class Customer {
         this.id = id;
         this.dpi = this.validateDpi(dpi);
         this.firstName = this.validateRequire(firstName, 'Nombre');
-        this.lastName = this.Required(lastName, 'Apellido');
+        this.lastName = this.validateRequire(lastName, 'Apellido');
         this.email = this.validateEmail(email);
         this.phone = phone;
         this.active = active;

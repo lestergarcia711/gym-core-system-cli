@@ -1,9 +1,9 @@
 import inquirer from 'inquirer';
 import chalk from 'chalk';
-import dbInstance from '../models/Customer.js';
-import {Customer } from '../models/Customer.js';
+import dbInstance from '../config/database.js';
+import { Customer } from '../models/Customer.js';
 
-export class CreateCustomerCommand{
+export class CreateClientCommand{
     async execute(){
         console.log(chalk.blue.bold('\n === Registrar NUEVO cliente ==='));
         const answer = await inquirer.prompt([
@@ -20,7 +20,7 @@ export class CreateCustomerCommand{
             const pool = dbInstance.getPool();
 
             await pool.execute(
-                'INSERT INTO customers (dpi, first_name, last_name, email, phone, active) VALUES (?, ?, ?, ?, ?, ?)',
+                `INSERT INTO customers (dpi, first_name, last_name, email, phone_number, active) VALUES (?, ?, ?, ?, ?, ?)`,
                 [customer.dpi, customer.firstName, customer.lastName, customer.email, customer.phone, true]
             );
             console.log(chalk.green.bold('El cliente ha sido registrado exitosamente.'));

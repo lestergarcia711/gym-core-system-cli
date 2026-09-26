@@ -5,7 +5,7 @@ export class ClientService{
     static async listClients(){
         const pool = dbInstance.getPool();
         const [rows] = await pool.execute(
-            'SELECT id, dpi, first_name, last_name, email, phone, acive FROM customers WHERE active = 1'
+            'SELECT id, dpi, first_name, last_name, email, phone_number, active FROM customers WHERE active = 1'
         );
         return rows;
     }
@@ -23,7 +23,7 @@ export class ClientService{
         const pool = dbInstance.getPool();
         const [result] = await pool.execute(
             `UPDATE customers
-             SET dpi = ?, first_name = ?, last_name = ?, email = ?, phone = ?
+             SET dpi = ?, first_name = ?, last_name = ?, email = ?, phone_number = ?
              WHERE id = ? AND active = 1`,
              [
                 customerData.dpi,
@@ -36,7 +36,7 @@ export class ClientService{
         );
         return result.affectedRows > 0;
         }
-        static async DeleteClientCommand(id){
+        static async deleteClient(id){
             const pool = dbInstance.getPool();
 
             const [ result ] = await pool.execute(
