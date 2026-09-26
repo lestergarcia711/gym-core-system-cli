@@ -7,6 +7,7 @@ import { CreateClientCommand } from './commands/CreateClientCommand.js';
 import { ListClientsCommand } from './commands/ListClientsCommand.js';
 import { UpdateClientCommand } from './commands/UpdateClientCommand.js';
 import { DeleteClientCommand } from './commands/DeleteClientCommand.js';
+import { AssignPlanCommand } from './commands/AssignPlanCommand.js';
 
 dotenv.config();
 
@@ -16,7 +17,8 @@ class App{
             'CLIENT_CREATE': new CreateClientCommand(),
             'CLIENT_LIST': new ListClientsCommand(),
             'CLIENT_UPDATE': new UpdateClientCommand(),
-            'CLIENT_DELETE': new DeleteClientCommand()
+            'CLIENT_DELETE': new DeleteClientCommand(),
+            'PLAN_ASSIGN': new AssignPlanCommand()
         };
        
     }
@@ -37,6 +39,7 @@ class App{
                             {name:'2.Listar Clientes.', value: 'CLIENT_LIST'},
                             {name:'3.Actualizar Cliente', value: 'CLIENT_UPDATE'},
                             {name:'4.Eliminar Cliente', value: 'CLIENT_DELETE'},
+                            {name:'5.Asignar plan y generar Contrato.', value: 'PLAN_ASSIGN'},
                             new inquirer.Separator(),
                             { name: '0. Salir del sistema', value: 'EXIT'}
                         ]
