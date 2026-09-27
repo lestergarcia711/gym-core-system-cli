@@ -2,6 +2,15 @@ import dbInstance from '../config/database.js';
 
 export class ClientService{
 
+    static async createClient(customer) {
+    const pool = dbInstance.getPool();
+    const [result] = await pool.execute(
+      `INSERT INTO customers (dpi, first_name, last_name, email, phone_number, active) VALUES (?, ?, ?, ?, ?, 1)`,
+      [customer.dpi, customer.firstName, customer.lastName, customer.email, customer.phone]
+    );
+    return result.insertId;
+  }
+
     static async listClients(){
         const pool = dbInstance.getPool();
         const [rows] = await pool.execute(
