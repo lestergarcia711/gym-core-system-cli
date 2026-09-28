@@ -1,16 +1,17 @@
-// app.js
 import inquirer from 'inquirer';
 import chalk from 'chalk';
 import dotenv from 'dotenv';
 
 import { ClientManagementCommand } from './commands/ClientManagementCommand.js';
+import { PlanManagementCommand } from './commands/PlanManagementCommand.js';
 
 dotenv.config();
 
 class App {
   constructor() {
     this.modules = {
-      CLIENTS: new ClientManagementCommand()
+      CLIENTS: new ClientManagementCommand(),
+      PLANS: new PlanManagementCommand()
     };
   }
 
@@ -20,16 +21,17 @@ class App {
 
     while (running) {
       console.log(chalk.bold.magenta('\n========================================'));
-      console.log(chalk.bold.white('      SISTEMA DE GESTIÓN DE GIMNASIO    '));
+      console.log(chalk.bold.white('      GESTION DE GYM-CORE-SYSTEM            '));
       console.log(chalk.bold.magenta('========================================'));
 
       const { selectedModule } = await inquirer.prompt([
         {
           type: 'select',
           name: 'selectedModule',
-          message: 'Seleccione un módulo de gestión:',
+          message: '==>Elija que desea Hacer.',
           choices: [
-            { name: '1. Gestión de Clientes (CRUD)', value: 'CLIENTS' },
+            { name: '1. Gestión de Clientes.', value: 'CLIENTS' },
+            { name: '2. Gestión de Planes y Contratos.', value: 'PLANS' },
             new inquirer.Separator(),
             { name: '0. Salir del Sistema', value: 'EXIT' }
           ]
@@ -37,7 +39,7 @@ class App {
       ]);
 
       if (selectedModule === 'EXIT') {
-        console.log(chalk.yellow('\n¡Gracias por usar el sistema! Hasta pronto.\n'));
+        console.log(chalk.yellow('\n¡Saliendo del Sistema! Hasta pronto.\n'));
         running = false;
         process.exit(0);
       }

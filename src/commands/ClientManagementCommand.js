@@ -9,13 +9,15 @@ export class ClientManagementCommand {
     let inMenu = true;
 
     while (inMenu) {
-      console.log(chalk.bold.blue('\n--- MÓDULO DE GESTIÓN DE CLIENTES ---'));
+      console.log(chalk.bold.blue('\n=====  GESTIÓN DE CLIENTES ======'));
+       console.log(chalk.bold.blue('\n================================'));
       const { action } = await inquirer.prompt([
         {
           type: 'select',
           name: 'action',
-          message: '¿Qué operación deseas realizar?',
+          message: '¿Qué operación desea realizar?',
           choices: [
+            new inquirer.Separator(),
             { name: '1. Registrar Nuevo Cliente', value: 'CREATE' },
             { name: '2. Listar Clientes Activos', value: 'LIST' },
             { name: '3. Actualizar Datos de Cliente', value: 'UPDATE' },
@@ -81,7 +83,7 @@ export class ClientManagementCommand {
           DPI: c.dpi,
           Nombre: `${c.first_name} ${c.last_name}`,
           Email: c.email,
-          Teléfono: c.phone
+          Teléfono: c.phone_number
         }))
       );
     } catch (error) {
@@ -109,14 +111,14 @@ export class ClientManagementCommand {
         { type: 'input', name: 'firstName', message: 'Nombre:', default: current.first_name },
         { type: 'input', name: 'lastName', message: 'Apellido:', default: current.last_name },
         { type: 'input', name: 'email', message: 'Correo Electrónico:', default: current.email },
-        { type: 'input', name: 'phone', message: 'Teléfono:', default: current.phone }
+        { type: 'input', name: 'phone', message: 'Teléfono:', default: current.phone_number }
       ]);
 
       const updatedCustomer = new Customer(answers);
       await ClientService.updateClient(id, updatedCustomer);
-      console.log(chalk.green.bold('\n✔ Datos del cliente actualizados correctamente.'));
+      console.log(chalk.green.bold('\n Datos del cliente actualizados correctamente.'));
     } catch (error) {
-      console.log(chalk.red.bold(`\n✖ Error al actualizar el cliente: ${error.message}`));
+      console.log(chalk.red.bold(`\nError al actualizar el cliente: ${error.message}`));
     }
   }
 
