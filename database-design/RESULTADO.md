@@ -7,7 +7,7 @@ Este documento detalla la arquitectura de la base de datos relacional para el **
 ## 1. Diagrama de Entidad-Relación
 
 A continuación se muestra cómo se conectan las tablas físicamente.
-![imagen donde se representa la ingenieria inversa de la base de datos](../img/diagrama-relacional.png)
+![imagen donde se representa la ingenieria inversa de la base de datos](../img/new-uml.png)
 
 ---
 

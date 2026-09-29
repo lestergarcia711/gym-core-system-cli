@@ -21,7 +21,8 @@ duration_month INT NOT NULL,
 phisical_goals TEXT NOT NULL,
 level ENUM('principiante', 'intermedio', 'avanzado') NOT NULL,
 active BIT(1) DEFAULT b'1',
-created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+required_metrics JSON NOT NULL DEFAULT (JSON_ARRAY('Peso', 'Grasa'))
 )ENGINE = INNODB;
 
 CREATE TABLE contracts(
