@@ -8,9 +8,9 @@ export class PlanService {
         
         const pool = dbInstance.getPool();
         const [result] = await pool.execute(
-            `INSERT INTO training_plans (name, duration_month, phisical_goals, level, active) 
-             VALUES (?, ?, ?, ?, ?)`,
-            [plan.name, plan.durationMonth, plan.phisicalGoals, plan.level, plan.active ? 1 : 0]
+            `INSERT INTO training_plans (name, duration_month, phisical_goals, level, active, required_metrics) 
+             VALUES (?, ?, ?, ?, ?, ?)`,
+            [planData.name, planData.durationMonth, planData.phisicalGoals, planData.level, planData.active ? 1 : 0, JSON.stringify(planData.metrics)]
         );
         
         return result.insertId;
@@ -67,5 +67,23 @@ export class PlanService {
             [id]
         );
         return result.affectedRows > 0;
+    }
+
+    static async getMetricsByContract(contractId){
+        const pool= dbInstance.getPool();
+
+        const [rows]= await pool.execute(
+            `SELECT tp.required_metrics
+             FROM contracts c
+             JOIN training_plans tp 
+              ON c.plan_id = tp.id
+              WHERE c.id =?`,
+              [contractId]
+        );
+
+        if(rows.length === 0){
+            return [];
+        }
+        return rows[0].required_metrics;
     }
 }

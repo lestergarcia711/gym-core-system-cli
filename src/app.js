@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 
 import { ClientManagementCommand } from './commands/ClientManagementCommand.js';
 import { PlanManagementCommand } from './commands/PlanManagementCommand.js';
+import { TrackingManagementCommand } from './commands/TrackingManagementCommand.js';
 
 dotenv.config();
 
@@ -11,7 +12,8 @@ class App {
   constructor() {
     this.modules = {
       CLIENTS: new ClientManagementCommand(),
-      PLANS: new PlanManagementCommand()
+      PLANS: new PlanManagementCommand(),
+      TRACKING: new TrackingManagementCommand()
     };
   }
 
@@ -32,6 +34,7 @@ class App {
           choices: [
             { name: '1. Gestión de Clientes.', value: 'CLIENTS' },
             { name: '2. Gestión de Planes y Contratos.', value: 'PLANS' },
+            { name: '3. Gestión de Seguimiento Físico', value: 'TRACKING' },
             new inquirer.Separator(),
             { name: '0. Salir del Sistema', value: 'EXIT' }
           ]
