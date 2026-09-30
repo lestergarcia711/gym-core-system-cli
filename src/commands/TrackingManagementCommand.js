@@ -9,6 +9,7 @@ export class TrackingManagementCommand{
         let inMenu = true;
         while (inMenu) {
             console.log(chalk.bold.blue('\n ====  GESTION DE SEGUIMIENTO FISICO ===='));
+            console.log(chalk.bold.blue('\n ========================================'));
             
             const action = await select({
                 message: 'Seleccione una opcion:',
@@ -55,7 +56,8 @@ export class TrackingManagementCommand{
                 weekNumber,
                 weightKg,
                 bodyFatPercentage,
-                measurementsJson: measurementsObj, 
+                measurementsJson: measurementsObj,
+                photoUrl,
                 comments
             });
 
