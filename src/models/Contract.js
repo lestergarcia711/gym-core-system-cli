@@ -50,7 +50,7 @@ export class Contract {
   }
 
   validateDate(value, field) {
-    if (typeof value !== 'string' || !DATE_FORMAT.test(value) || !dayjs(value).isValid()) {
+    if (typeof value !== 'string' || !DATE_FORMAT.test(value) || !dayjs(value).isValid() || dayjs(value).format('YYYY-MM-DD') !== value) {
       throw new Error(`${field} inválida. Formato esperado: YYYY-MM-DD.`);
     }
     return value;

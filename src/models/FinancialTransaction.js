@@ -12,8 +12,6 @@ export class FinancialTransaction {
     this.customerId = this.validateOptionalId(customerId, 'Id de cliente');
     this.contractId = this.validateOptionalId(contractId, 'Id de contrato');
 
-    // Regla de negocio (ver RESULTADO.md): todo ingreso debe poder auditarse
-    // contra un cliente y un contrato; los egresos son gastos generales del gym.
     if (this.type === 'ingreso' && (!this.customerId || !this.contractId)) {
       throw new Error('Un ingreso debe estar asociado a un cliente y a un contrato.');
     }
@@ -60,7 +58,8 @@ export class FinancialTransaction {
 
   validateDate(value) {
     const date = value ? dayjs(value) : dayjs();
-    if (!date.isValid()) {
+    
+    if (!date.isValid() || (value && date.format('YYYY-MM-DD') !== String(value).trim())) {
       throw new Error('Fecha de transacción inválida. Formato esperado: YYYY-MM-DD.');
     }
     return date.format('YYYY-MM-DD');
