@@ -69,4 +69,33 @@ export class ClientService{
             );
             return result.affectedRows > 0;
         }
+
+    
+        static async exportClientData(id) {
+            const pool = dbInstance.getPool();
+            
+          
+            const [customers] = await pool.execute(
+                `SELECT id, dpi, first_name, last_name, email, phone_number, active, created_at 
+                 FROM customers 
+                 WHERE id = ? OR dpi = ? OR CONCAT(first_name, ' ', last_name) LIKE ?`,
+                [id, id, `%${id}%`]
+            );
+    
+            if (customers.length === 0) {
+                throw new Error(`No se encontró ningún cliente que coincida con: "${id}"`);
+            }
+            
+            const client = customers[0];
+            const customerId = client.id;
+    
+            const [physicalTracking] = await pool.execute(
+                `SELECT id, contract_id, week_number, weight_kg, body_fat_percentage, 
+                        measurements_json, photo_url, comments, recorded_at 
+                 FROM phisical_tracking 
+                 WHERE customer_id = ? 
+                 ORDER BY recorded_at DESC`,
+                [customerId]
+            );
+        }
 }
