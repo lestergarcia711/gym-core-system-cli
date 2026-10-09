@@ -3,6 +3,7 @@ import { TransactionManager } from '../utils/TransactionManager.js';
 import { ContractService } from '../services/ContractService.js';
 import { FinanceService } from '../services/FinanceService.js';
 import { NutritionService } from '../services/NutritionService.js';
+import { BackupService } from '../services/BackupService.js';
 
 export const transactionManager = new TransactionManager(dbInstance);
 
@@ -20,3 +21,5 @@ export const nutritionService = new NutritionService({
   transactionManager,
   database: dbInstance
 });
+
+export const backupService = new BackupService({ database: dbInstance });

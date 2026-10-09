@@ -7,6 +7,7 @@ import { PlanManagementCommand } from './commands/PlanManagementCommand.js';
 import { TrackingManagementCommand } from './commands/TrackingManagementCommand.js';
 import { NutritionManagementCommand } from './commands/NutritionManagementCommand.js';
 import { FinanceManagementCommand } from './commands/FinanceManagementCommand.js';
+import { DataManagementCommand } from './commands/DataManagementCommand.js';
 
 dotenv.config();
 
@@ -17,7 +18,8 @@ class App {
       PLANS: new PlanManagementCommand(),
       TRACKING: new TrackingManagementCommand(),
       NUTRITION: new NutritionManagementCommand(),
-      FINANCE: new FinanceManagementCommand()
+      FINANCE: new FinanceManagementCommand(),
+      DATA: new DataManagementCommand()
     };
   }
 
@@ -41,6 +43,7 @@ class App {
             { name: '3. Gestión de Seguimiento Físico', value: 'TRACKING' },
             { name: '4. Gestión de Nutrición', value: 'NUTRITION' },
             { name: '5. Gestión Financiera', value: 'FINANCE' },
+            { name: '6. Respaldo y exportacion de datos', value: 'DATA'},
             new inquirer.Separator(),
             { name: '0. Salir del Sistema', value: 'EXIT' }
           ]
